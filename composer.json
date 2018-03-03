@@ -1,0 +1,32 @@
+{
+    "name": "viviniko/tag",
+    "description": "VIVINIKO Tag Service Provider",
+	"keywords": ["viviniko", "tag", "laravel"],
+	"homepage": "http://viviniko.com",
+	"license": "MIT",
+	"authors": [
+        {
+            "name": "viviniko",
+            "email": "viviniko.shop@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "viviniko/repository": "dev-master",
+        "viviniko/support": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Viviniko\\Tag": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Viviniko\\Tag\\TagServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
