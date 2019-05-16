@@ -2,9 +2,13 @@
 
 namespace Viviniko\Tag\Repositories\CategoryTag;
 
-use Viviniko\Repository\SimpleRepository;
+use Illuminate\Support\Facades\Config;
+use Viviniko\Repository\EloquentRepository;
 
-class EloquentCategoryTag extends SimpleRepository implements CategoryTagRepository
+class EloquentCategoryTag extends EloquentRepository implements CategoryTagRepository
 {
-    protected $modelConfigKey = 'tag.category_tag';
+    public function __construct()
+    {
+        parent::__construct(Config::get('tag.category_tag'));
+    }
 }

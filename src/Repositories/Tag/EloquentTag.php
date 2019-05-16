@@ -2,27 +2,21 @@
 
 namespace Viviniko\Tag\Repositories\Tag;
 
-use Viviniko\Repository\SimpleRepository;
+use Illuminate\Support\Facades\Config;
+use Viviniko\Repository\EloquentRepository;
 
-class EloquentTag extends SimpleRepository implements TagRepository
+class EloquentTag extends EloquentRepository implements TagRepository
 {
-    protected $modelConfigKey = 'tag.tag';
-
-    protected $fieldSearchable = ['id', 'name'];
+    public function __construct()
+    {
+        parent::__construct(Config::get('tag.tag'));
+    }
 
     /**
      * {@inheritdoc}
      */
     public function findByName($name)
     {
-        return $this->createModel()->where('name', $name)->first();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function lists($column = 'name', $key = null)
-    {
-        return $this->pluck($column, $key);
+        return $this->createModel()->newQuery()->where('name', $name)->first();
     }
 }

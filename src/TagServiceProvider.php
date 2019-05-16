@@ -41,8 +41,6 @@ class TagServiceProvider extends BaseServiceProvider
 
         $this->registerRepositories();
 
-        $this->registerAddressService();
-
         $this->registerCommands();
     }
 
@@ -72,19 +70,6 @@ class TagServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Register the favorite service provider.
-     *
-     * @return void
-     */
-    protected function registerAddressService()
-    {
-        $this->app->singleton(
-            \Viviniko\Tag\Contracts\TagService::class,
-            \Viviniko\Tag\Services\TagServiceImpl::class
-        );
-    }
-
-    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -92,7 +77,8 @@ class TagServiceProvider extends BaseServiceProvider
     public function provides()
     {
         return [
-            \Viviniko\Tag\Contracts\TagService::class
+            \Viviniko\Tag\Repositories\Tag\TagRepository::class,
+            \Viviniko\Tag\Repositories\CategoryTag\CategoryTagRepository::class,
         ];
     }
 }
