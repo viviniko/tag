@@ -52,8 +52,8 @@ class TagServiceProvider extends BaseServiceProvider
         );
 
         $this->app->singleton(
-            \Viviniko\Tag\Repositories\CategoryTag\CategoryTagRepository::class,
-            \Viviniko\Tag\Repositories\CategoryTag\EloquentCategoryTag::class
+            \Viviniko\Tag\Repositories\Topic\TopicRepository::class,
+            \Viviniko\Tag\Repositories\Topic\EloquentTopic::class
         );
     }
 
@@ -77,8 +77,6 @@ class TagServiceProvider extends BaseServiceProvider
     public function provides()
     {
         return [
-            \Viviniko\Tag\Repositories\Tag\TagRepository::class,
-            \Viviniko\Tag\Repositories\CategoryTag\CategoryTagRepository::class,
         ];
     }
 }

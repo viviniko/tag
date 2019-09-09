@@ -14,13 +14,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Category Tag Model
+    | Topic Model
     |--------------------------------------------------------------------------
     |
-    | This is the tag model.
+    | This is the topic model.
     |
     */
-    'category_tag' => 'Viviniko\Tag\Models\CategoryTag',
+    'topic' => 'Viviniko\Tag\Models\Topic',
 
     /*
     |--------------------------------------------------------------------------
@@ -44,12 +44,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Tag Category Table
+    | Tag Topic Table
     |--------------------------------------------------------------------------
     |
-    | This is the tag category table.
+    | This is the tag topic table.
     |
     */
-    'tag_category_table' => 'tag_category',
+    'topics_table' => 'tag_topics',
 
 ];

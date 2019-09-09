@@ -20,7 +20,7 @@ class CreateTagTable extends Migration
     /**
      * @var string
      */
-    protected $tagCategoryTable;
+    protected $topicsTable;
 
     /**
      * CreateTagTable constructor.
@@ -29,7 +29,7 @@ class CreateTagTable extends Migration
     {
         $this->tagsTable = Config::get('tag.tags_table');
         $this->taggablesTable = Config::get('tag.taggables_table');
-        $this->tagCategoryTable = Config::get('tag.tag_category_table');
+        $this->topicsTable = Config::get('tag.topics_table');
     }
 
     /**
@@ -48,22 +48,23 @@ class CreateTagTable extends Migration
         });
 
         Schema::create($this->taggablesTable, function (Blueprint $table) {
-            $table->increments('id');
             $table->unsignedInteger('tag_id');
             $table->morphs('taggable');
+            $table->integer('position')->default(0);
+            $table->timestamps();
         });
 
-        Schema::create($this->tagCategoryTable, function (Blueprint $table) {
+        Schema::create($this->topicsTable, function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('category_id');
-            $table->string('category_type');
+            $table->string('type');
             $table->unsignedInteger('tag_id');
             $table->string('url_rewrite');
+            $table->string('title')->nullable();
+            $table->unsignedInteger('picture_id')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
-
-            $table->unique(['category_type', 'category_id', 'tag_id']);
+            $table->timestamps();
         });
     }
 
@@ -74,7 +75,7 @@ class CreateTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->tagCategoryTable);
+        Schema::dropIfExists($this->topicsTable);
         Schema::dropIfExists($this->taggablesTable);
         Schema::dropIfExists($this->tagsTable);
     }
