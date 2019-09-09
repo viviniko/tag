@@ -8,6 +8,7 @@ trait Taggable
 {
     public function tags()
     {
-        return $this->morphToMany(Config::get('tag.tag'), 'taggable', Config::get('tag.taggables_table'))->select(Config::get('tag.tags_table') . '.*');
+        return $this->morphToMany(Config::get('tag.tag'), 'taggable', Config::get('tag.taggables_table'))
+            ->select(Config::get('tag.tags_table') . '.*');
     }
 }

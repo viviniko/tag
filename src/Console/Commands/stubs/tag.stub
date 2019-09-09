@@ -48,10 +48,10 @@ class CreateTagTable extends Migration
         });
 
         Schema::create($this->taggablesTable, function (Blueprint $table) {
+            $table->string("taggable_type");
+            $table->unsignedBigInteger("taggable_id");
             $table->unsignedInteger('tag_id');
-            $table->morphs('taggable');
-            $table->integer('position')->default(0);
-            $table->timestamps();
+            $table->unique(['taggable_type', 'taggable_id', 'tag_id']);
         });
 
         Schema::create($this->topicsTable, function (Blueprint $table) {

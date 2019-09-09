@@ -4,9 +4,12 @@ namespace Viviniko\Tag\Models;
 
 use Illuminate\Support\Facades\Config;
 use Viviniko\Support\Database\Eloquent\Model;
+use Viviniko\Urlrewrite\UrlrewriteTrait;
 
 class Topic extends Model
 {
+    use UrlrewriteTrait;
+
     protected $tableConfigKey = 'tag.topics_table';
 
     protected $fillable = ['title', 'type', 'tag_id', 'url_rewrite', 'picture_id',
@@ -20,10 +23,5 @@ class Topic extends Model
     public function getNameAttribute()
     {
         return $this->tag->name;
-    }
-
-    public function category()
-    {
-        return $this->morphTo();
     }
 }

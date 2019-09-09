@@ -7,11 +7,11 @@ use Viviniko\Repository\CrudRepository;
 interface TagRepository extends CrudRepository
 {
     /**
-     * Get manufacturer by given name.
+     * Get all tag by given type.
      *
-     * @param $name
+     * @param $type
      *
      * @return mixed
      */
-    public function findByName($name);
+    public function findAllByTaggableType($type);
 }

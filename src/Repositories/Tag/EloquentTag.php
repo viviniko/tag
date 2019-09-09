@@ -13,10 +13,14 @@ class EloquentTag extends EloquentRepository implements TagRepository
     }
 
     /**
-     * {@inheritdoc}
+     * Get all tag by given type.
+     *
+     * @param $type
+     *
+     * @return mixed
      */
-    public function findByName($name)
+    public function findAllByTaggableType($type)
     {
-        return $this->createModel()->newQuery()->where('name', $name)->first();
+        // TODO: Implement findAllByTaggableType() method.
     }
 }
