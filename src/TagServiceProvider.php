@@ -50,11 +50,6 @@ class TagServiceProvider extends BaseServiceProvider
             \Viviniko\Tag\Repositories\Tag\TagRepository::class,
             \Viviniko\Tag\Repositories\Tag\EloquentTag::class
         );
-
-        $this->app->singleton(
-            \Viviniko\Tag\Repositories\Topic\TopicRepository::class,
-            \Viviniko\Tag\Repositories\Topic\EloquentTopic::class
-        );
     }
 
     /**

@@ -18,18 +18,12 @@ class CreateTagTable extends Migration
     protected $taggablesTable;
 
     /**
-     * @var string
-     */
-    protected $topicsTable;
-
-    /**
      * CreateTagTable constructor.
      */
     public function __construct()
     {
         $this->tagsTable = Config::get('tag.tags_table');
         $this->taggablesTable = Config::get('tag.taggables_table');
-        $this->topicsTable = Config::get('tag.topics_table');
     }
 
     /**
@@ -42,6 +36,12 @@ class CreateTagTable extends Migration
         Schema::create($this->tagsTable, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('position')->default(0);
+            $table->string('url_rewrite')->nullable();
+            $table->string('title')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
 
             $table->unique(['name']);
@@ -51,20 +51,6 @@ class CreateTagTable extends Migration
             $table->string("taggable_type");
             $table->unsignedBigInteger("taggable_id");
             $table->unsignedInteger('tag_id');
-            $table->unique(['taggable_type', 'taggable_id', 'tag_id']);
-        });
-
-        Schema::create($this->topicsTable, function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('type');
-            $table->unsignedInteger('tag_id');
-            $table->string('url_rewrite');
-            $table->string('title')->nullable();
-            $table->unsignedInteger('picture_id')->nullable();
-            $table->string('meta_title')->nullable();
-            $table->string('meta_keywords')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -75,7 +61,6 @@ class CreateTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->topicsTable);
         Schema::dropIfExists($this->taggablesTable);
         Schema::dropIfExists($this->tagsTable);
     }

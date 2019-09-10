@@ -11,16 +11,4 @@ class EloquentTag extends EloquentRepository implements TagRepository
     {
         parent::__construct(Config::get('tag.tag'));
     }
-
-    /**
-     * Get all tag by given type.
-     *
-     * @param $type
-     *
-     * @return mixed
-     */
-    public function findAllByTaggableType($type)
-    {
-        // TODO: Implement findAllByTaggableType() method.
-    }
 }
