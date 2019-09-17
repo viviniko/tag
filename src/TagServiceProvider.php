@@ -4,6 +4,8 @@ namespace Viviniko\Tag;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Viviniko\Tag\Console\Commands\TagTableCommand;
+use Viviniko\Tag\Models\Tag;
+use Viviniko\Tag\Observers\TagObserver;
 
 class TagServiceProvider extends BaseServiceProvider
 {
@@ -42,6 +44,8 @@ class TagServiceProvider extends BaseServiceProvider
         $this->registerRepositories();
 
         $this->registerCommands();
+
+        Tag::observe(TagObserver::class);
     }
 
     public function registerRepositories()
