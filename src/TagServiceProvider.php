@@ -30,6 +30,8 @@ class TagServiceProvider extends BaseServiceProvider
 
         // Register commands
         $this->commands('command.tag.table');
+
+        Tag::observe(TagObserver::class);
     }
 
     /**
@@ -44,8 +46,6 @@ class TagServiceProvider extends BaseServiceProvider
         $this->registerRepositories();
 
         $this->registerCommands();
-
-        Tag::observe(TagObserver::class);
     }
 
     public function registerRepositories()
