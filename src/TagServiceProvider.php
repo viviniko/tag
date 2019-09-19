@@ -2,6 +2,7 @@
 
 namespace Viviniko\Tag;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Viviniko\Tag\Console\Commands\TagTableCommand;
 use Viviniko\Tag\Models\Tag;
@@ -32,6 +33,12 @@ class TagServiceProvider extends BaseServiceProvider
         $this->commands('command.tag.table');
 
         Tag::observe(TagObserver::class);
+
+        $config = $this->app['config'];
+
+        Relation::morphMap([
+            'tag' => $config->get('tag.tag'),
+        ]);
     }
 
     /**
