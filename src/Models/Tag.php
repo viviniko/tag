@@ -12,7 +12,7 @@ class Tag extends Model
 
     protected $tableConfigKey = 'tag.tags_table';
 
-    protected $fillable = ['name', 'title', 'url_rewrite', 'meta_title', 'meta_keywords', 'meta_description', 'position'];
+    protected $fillable = ['name', 'position'];
 
     public function attachedCount($type = null)
     {
